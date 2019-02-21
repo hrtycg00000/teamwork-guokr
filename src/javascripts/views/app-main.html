@@ -1,0 +1,17 @@
+<div class="main-banner">
+
+</div>
+{{#each pressList}}
+<a class="press bor-bot">
+    <div class="press-flex">
+        <div class="press-flex__info">
+            <h3>{{title}}</h1>
+            <p>{{summary}}</p>
+        </div>
+        <img src={{small_image}}?imageView2/1/w/240/h/150/ alt="">
+    </div>
+    <div class="press-tags">
+        <span class="press-tags__item">{{subject.name}}</span>
+    </div>
+</a>
+{{/each}}

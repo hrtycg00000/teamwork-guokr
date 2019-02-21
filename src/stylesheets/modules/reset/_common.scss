@@ -1,0 +1,13 @@
+.show{display: block !important;}
+.hide{display: none !important;}
+
+.flex-center{display: flex;justify-content: center;align-items: center;}
+.flex-between{display: flex;justify-content: space-between}
+.flex-col-between{display: flex;justify-content: space-between;flex-direction: column}
+.col-center{align-items: center;}
+
+// 上下左边框,颜色自己设置
+.bor-bot,.bor-top,.bor-left{position: relative;}
+.bor-bot::after{ content: ""; width: 100%; height: 1px; position: absolute; left: 0; bottom: 0; transform:scaleY(.5) ;transform-origin: bottom center;}
+.bor-top::after{ content: ""; width: 100%; height: 1px; position: absolute; left: 0; bottom: 0; transform:scaleY(.5) ;transform-origin: top center;}
+.bor-left::after{ content: ""; width: 1px; height: 100%; position: absolute; left: 0; top: 0; transform:scaleX(.5);transform-origin: left center;}

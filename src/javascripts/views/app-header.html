@@ -1,0 +1,23 @@
+<div class="header-icon">
+    <div class="header-icon__side">
+        <i class="iconfont icon-sidebar"></i>
+    </div>
+    <a class="header-icon__logo"  href="./#index">
+        <img src="./static/images/header/logo.png" alt="">
+        <span>·</span>
+        <span>{{titleName}}</span>
+    </a>
+    <div class="header-icon__search"">
+        <i class="iconfont icon-sousuo"></i>
+    </div>
+</div>
+<div class="header-nav">
+    <nav class="header-nav__item">
+        <a class="navLink active">全部</a>
+        <a class="navLink">推荐</a>
+        {{#each navList}}
+        <a class="navLink">{{name}}</a>
+        {{/each}}
+    </nav> 
+    <div class="header-nav__side hide"></div>
+</div>

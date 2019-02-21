@@ -1,0 +1,19 @@
+@import './normalize';
+
+* {
+    box-sizing: border-box;
+    font-family: '微软雅黑';
+}
+
+html,body{
+    height: 100%;
+}
+
+a{
+    color: #333;
+    text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+    margin: 0;padding: 0;
+}
