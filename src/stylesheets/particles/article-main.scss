@@ -1,0 +1,44 @@
+#app{
+  display: flex;
+//   justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+#app-header{
+  height: 50px;
+  flex-grow: 0;
+  flex-shrink: 0;
+
+  .header-icon{
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i{
+          font-size: 23px;
+      }
+      img{width: 33px;}
+      .header-icon__side,.header-icon__search{
+          height: 100%;
+          padding: 0 15px;
+          display: flex;
+          align-items: center;
+      }
+      .header-icon__logo {
+        background-size: 100% auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 50px;float: right;
+        width: 19%;
+        background-image: url(../../static/images/header/logo-ed25de9c93.png)
+      }
+  }
+}
+
+/* 文章内容 */
+#app-main {
+  flex-grow: 1;
+  overflow: auto;
+  
+}

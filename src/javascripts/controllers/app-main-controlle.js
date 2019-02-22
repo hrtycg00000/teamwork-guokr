@@ -28,6 +28,7 @@ const render = async (url) => {
 
     init();//渲染完开始监听
     allPress=allPress.concat(pressList);
+    console.log(allPress);
     
     $(`#loading`).addClass(`hide`);
 }
@@ -76,6 +77,7 @@ function changeNav(){
 function init(){
     allPress=[];
     listenerScroll();
+    console.log(allPress)
 }
 
 function listenerScroll(){

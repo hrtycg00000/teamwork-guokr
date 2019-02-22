@@ -1,0 +1,18 @@
+{{#context}}
+<h1>{{title}}</h1>
+<div class="flex-info">
+  <div class="info-left">{{author.nickname}}</div>
+  <div class="info-right">{{date_created}}</div>
+</div>
+<p class="discription">{{summary}}</p>
+<div class="context">
+</div>
+<div class="flex tags">
+  <div class="tags-title">本文属于</div>
+  <div class="tags-list">
+    {{#if channels}}
+    <a href="" class="tag">{{channels.name}}</a>
+    {{/if}}
+  </div>
+</div>
+{{/context}}
