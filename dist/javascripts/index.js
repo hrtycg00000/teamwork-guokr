@@ -115,7 +115,7 @@ eval("const appMainController = __webpack_require__(/*! ./app-main-controlle */ 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const { getHeaderNav, getTitleName } = __webpack_require__(/*! ../models/app-header-model */ \"./src/javascripts/models/app-header-model.js\");\r\n\r\nconst render = async () => {\r\n    let appHeaderView = __webpack_require__(/*! ../views/app-header.html */ \"./src/javascripts/views/app-header.html\");\r\n    let navList = getHeaderNav();\r\n    let titleName = getTitleName();\r\n    let template = Handlebars.compile(appHeaderView);\r\n    console.log(navList);\r\n    \r\n    $(`#app-header`).append(template({navList,titleName}));\r\n}\r\n\r\nmodule.exports = { render };\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-header-controlle.js?");
+eval("const { getHeaderNav, getTitleName } = __webpack_require__(/*! ../models/app-header-model */ \"./src/javascripts/models/app-header-model.js\");\r\nconst routes = __webpack_require__(/*! ../router/index */ \"./src/javascripts/router/index.js\");\r\n\r\nconst render = async () => {\r\n    let appHeaderView = __webpack_require__(/*! ../views/app-header.html */ \"./src/javascripts/views/app-header.html\");\r\n    let navList = getHeaderNav();\r\n    let titleName = getTitleName();\r\n    let template = Handlebars.compile(appHeaderView);\r\n    console.log(navList);\r\n    new routes().addRoutes(navList);\r\n    $(`#app-header`).append(template({navList,titleName}));\r\n}\r\n\r\nmodule.exports = { render };\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-header-controlle.js?");
 
 /***/ }),
 
@@ -126,7 +126,7 @@ eval("const { getHeaderNav, getTitleName } = __webpack_require__(/*! ../models/a
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const { getFilmsList, getPressList } = __webpack_require__(/*! ../models/app-main-model */ \"./src/javascripts/models/app-main-model.js\");\r\nconst { getMetaContent } = __webpack_require__(/*! ../models/app-model */ \"./src/javascripts/models/app-model.js\");\r\nconst omain=$(`#app-main`);\r\n\r\nconst render = async () => {\r\n    $(`#loading`).removeClass(`hide`);\r\n\r\n    let appMainView = __webpack_require__(/*! ../views/app-main.html */ \"./src/javascripts/views/app-main.html\");\r\n    let flimList = await getFilmsList();\r\n    let pressList = getPressList();\r\n    console.log(flimList,pressList);\r\n    let template = Handlebars.compile(appMainView);\r\n    omain.html( template({ flims: flimList.movieList , pressList}) );\r\n    \r\n}\r\n\r\nmodule.exports = { render };\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-main-controlle.js?");
+eval("const { getFilmsList, getPressList, getBanner } = __webpack_require__(/*! ../models/app-main-model */ \"./src/javascripts/models/app-main-model.js\");\r\nconst { getMetaContent } = __webpack_require__(/*! ../models/app-model */ \"./src/javascripts/models/app-model.js\");\r\nconst omain=$(`#app-main`);\r\nlet flimList\r\n\r\nconst render = () => {\r\n    changeNav();\r\n    let appMainView = __webpack_require__(/*! ../views/app-main.html */ \"./src/javascripts/views/app-main.html\");\r\n    let pressList = getPressList();\r\n    console.log(pressList);\r\n    let template = Handlebars.compile( appMainView );\r\n    omain.html( template({ pressList, banner: getBanner() }) );\r\n    \r\n    \r\n}\r\n\r\nconst nextRender = async (url) => {\r\n    $(`#loading`).removeClass(`hide`);\r\n    changeNav();\r\n    let appMainView = __webpack_require__(/*! ../views/app-main.html */ \"./src/javascripts/views/app-main.html\");\r\n    let flimList = await getFilmsList(url);\r\n    let template = Handlebars.compile( appMainView );\r\n    console.log(flimList);\r\n    omain.html( template({ pressList: flimList}) );\r\n    $(`#loading`).addClass(`hide`);\r\n}\r\n\r\nfunction changeNav(){\r\n    let path = location.hash.replace(\"#\", \"\");\r\n    $(`.navLink`).removeClass(\"active\");\r\n    $(`#${path}`).addClass(\"active\");\r\n}\r\n\r\nmodule.exports = { render, nextRender };\n\n//# sourceURL=webpack:///./src/javascripts/controllers/app-main-controlle.js?");
 
 /***/ }),
 
@@ -137,7 +137,7 @@ eval("const { getFilmsList, getPressList } = __webpack_require__(/*! ../models/a
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const appControlles = __webpack_require__(/*! ./controllers/app-controlles */ \"./src/javascripts/controllers/app-controlles.js\");\r\nconst Router = __webpack_require__(/*! ./router */ \"./src/javascripts/router/index.js\");\r\n\r\nappControlles.render();\r\nnew Router(`index`).init();\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
+eval("const appControlles = __webpack_require__(/*! ./controllers/app-controlles */ \"./src/javascripts/controllers/app-controlles.js\");\r\nconst Router = __webpack_require__(/*! ./router */ \"./src/javascripts/router/index.js\");\r\n\r\n\r\nappControlles.render();\r\nnew Router(`index`).init();\n\n//# sourceURL=webpack:///./src/javascripts/index.js?");
 
 /***/ }),
 
@@ -159,7 +159,7 @@ eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/inde
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/index.js\");\r\nconst { getMetaContent } = __webpack_require__(/*! ./app-model */ \"./src/javascripts/models/app-model.js\");\r\n\r\nlet filmsPage = 1;\r\nconst getFilmsList = () => {\r\n    return api.request({\r\n        url: `/science_api/articles?limit=10&page=${filmsPage++}`\r\n    })\r\n}\r\n\r\nconst getPressList = () => {\r\n    return getMetaContent().firstScreen;\r\n}\r\n\r\nmodule.exports = { getFilmsList, getPressList };\n\n//# sourceURL=webpack:///./src/javascripts/models/app-main-model.js?");
+eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/index.js\");\r\nconst { getMetaContent } = __webpack_require__(/*! ./app-model */ \"./src/javascripts/models/app-model.js\");\r\nlet filmsPage = 1;\r\n\r\nconst getFilmsList = (_url) => {\r\n    return api.request({\r\n        url: _url\r\n    })\r\n}\r\nconst get = () => {\r\n    return api.request({\r\n        url: `/science_api/articles?limit=10&page=5&category_id=1&retrieve_type=by_category`\r\n    })\r\n}\r\n\r\nconst getPressList = () => {\r\n    return getMetaContent().firstScreen;\r\n}\r\nconst getBanner = () => {\r\n    return getMetaContent().flowingBoard.flowingBanner;\r\n}\r\n\r\n\r\nmodule.exports = { getFilmsList, getPressList, getBanner };\n\n//# sourceURL=webpack:///./src/javascripts/models/app-main-model.js?");
 
 /***/ }),
 
@@ -170,7 +170,7 @@ eval("const api = __webpack_require__(/*! ../api */ \"./src/javascripts/api/inde
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("const getMetaContent = () => {\r\n    return JSON.parse($(`[name=guokrStringify]`).attr(`content`)) ;\r\n}\r\n\r\nmodule.exports = { getMetaContent };\n\n//# sourceURL=webpack:///./src/javascripts/models/app-model.js?");
+eval("const getMetaContent = () => {\r\n    return JSON.parse($(`[name=guokrStringify]`).attr(`content`)) ;\r\n}\r\n\r\n\r\nclass Num{\r\n    constructor(){\r\n        return Num.instance ||  new NumInstance();\r\n    }\r\n}\r\n\r\nclass NumInstance{\r\n    constructor(){\r\n        this.init();\r\n        return this.num ++;\r\n    }\r\n    init(){\r\n        return this.num = 1;\r\n    }\r\n}\r\n\r\nmodule.exports = { getMetaContent, Num };\n\n//# sourceURL=webpack:///./src/javascripts/models/app-model.js?");
 
 /***/ }),
 
@@ -181,7 +181,7 @@ eval("const getMetaContent = () => {\r\n    return JSON.parse($(`[name=guokrStri
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("let routes = __webpack_require__(/*! ./routes */ \"./src/javascripts/router/routes.js\");\r\nclass Router{\r\n    constructor(initial){\r\n        this.initial = initial;\r\n        return Router.RouterInstance || this.creatRouter();\r\n    }\r\n    creatRouter(){\r\n        Router.RouterInstance = new RouterInstance(this.initial);\r\n        return Router.RouterInstance;\r\n    }\r\n}\r\n\r\nclass RouterInstance {\r\n    constructor(initial){\r\n        this.routes = routes;\r\n        this.initial = initial;\r\n    }\r\n    init(){\r\n        this.listenHashChenge();\r\n    }\r\n    chengHash(){\r\n        let path = location.hash.replace(\"#\", \"\");\r\n        let handler = this.routes[path];\r\n        if( handler ){\r\n            handler();\r\n        }else {\r\n            location.hash = this.initial;\r\n        } \r\n    }\r\n    listenHashChenge(){\r\n        this.chengHash();\r\n        window.addEventListener(`hashchange`,e => {            \r\n            this.chengHash();\r\n        })\r\n    } \r\n    addRoutes(routeObj){\r\n        Object.assign(routes,routeObj);\r\n    }\r\n}\r\n\r\nmodule.exports = Router;\n\n//# sourceURL=webpack:///./src/javascripts/router/index.js?");
+eval("let routes = __webpack_require__(/*! ./routes */ \"./src/javascripts/router/routes.js\");\r\nconst appMainController = __webpack_require__(/*! ../controllers/app-main-controlle */ \"./src/javascripts/controllers/app-main-controlle.js\");\r\nconst { Num } = __webpack_require__(/*! ../models/app-model */ \"./src/javascripts/models/app-model.js\");\r\n\r\nclass Router{\r\n    constructor(initial){\r\n        this.initial = initial;\r\n        return Router.RouterInstance || this.creatRouter();\r\n    }\r\n    creatRouter(){\r\n        Router.RouterInstance = new RouterInstance(this.initial);\r\n        return Router.RouterInstance;\r\n    }\r\n}\r\n\r\nclass RouterInstance {\r\n    constructor(initial){\r\n        this.routes = routes;\r\n        this.initial = initial;\r\n    }\r\n    init(){\r\n        this.listenHashChenge();\r\n    }\r\n    chengHash(){\r\n        let path = location.hash.replace(\"#\", \"\");\r\n        let handler = this.routes[path];\r\n        if( handler ){\r\n            handler();\r\n        }else {\r\n            location.hash = this.initial;\r\n        } \r\n    }\r\n    listenHashChenge(){\r\n        new Num().init();\r\n        this.chengHash();\r\n        window.addEventListener(`hashchange`,e => {\r\n            this.chengHash();\r\n        })\r\n    } \r\n    addRoutes(navList){\r\n        navList.forEach(element => {\r\n            routes[element.key] = () => appMainController.nextRender(`/science_api/articles?limit=10&page=${new Num().num}&category_id=${element.id}&retrieve_type=by_category`);\r\n        });\r\n    }\r\n}\r\n\r\nmodule.exports = Router;\n\n//# sourceURL=webpack:///./src/javascripts/router/index.js?");
 
 /***/ }),
 
@@ -192,7 +192,7 @@ eval("let routes = __webpack_require__(/*! ./routes */ \"./src/javascripts/route
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const appMainController = __webpack_require__(/*! ../controllers/app-main-controlle */ \"./src/javascripts/controllers/app-main-controlle.js\");\r\n\r\nlet routes = {\r\n    \"index\": () => {appMainController.render();}, //例子\r\n}\r\n\r\nmodule.exports = routes;\n\n//# sourceURL=webpack:///./src/javascripts/router/routes.js?");
+eval("const appMainController = __webpack_require__(/*! ../controllers/app-main-controlle */ \"./src/javascripts/controllers/app-main-controlle.js\");\r\nconst { Num } = __webpack_require__(/*! ../models/app-model */ \"./src/javascripts/models/app-model.js\");\r\n\r\nlet routes = {\r\n    \"index\": () => {appMainController.render(`/science_api/articles?limit=10&page=${new Num().num}`);}, //例子\r\n    \"tuijian\": () => {appMainController.nextRender(`/science_api/articles?limit=10&page=${new Num().num}`);}, //例子\r\n}\r\n\r\nmodule.exports = routes;\n\n//# sourceURL=webpack:///./src/javascripts/router/routes.js?");
 
 /***/ }),
 
@@ -203,7 +203,7 @@ eval("const appMainController = __webpack_require__(/*! ../controllers/app-main-
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = \"<div class=\\\"header-icon\\\">    <div class=\\\"header-icon__side\\\">        <i class=\\\"iconfont icon-sidebar\\\"></i>    </div>    <a class=\\\"header-icon__logo\\\"  href=\\\"./#index\\\">        <img src=\\\"./static/images/header/logo.png\\\" alt=\\\"\\\">        <span>·</span>        <span>{{titleName}}</span>    </a>    <div class=\\\"header-icon__search\\\"\\\">        <i class=\\\"iconfont icon-sousuo\\\"></i>    </div></div><div class=\\\"header-nav\\\">    <nav class=\\\"header-nav__item\\\">        <a class=\\\"navLink active\\\">全部</a>        <a class=\\\"navLink\\\">推荐</a>        {{#each navList}}        <a class=\\\"navLink\\\">{{name}}</a>        {{/each}}    </nav>     <div class=\\\"header-nav__side hide\\\"></div></div>\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-header.html?");
+eval("module.exports = \"<div class=\\\"header-icon\\\">    <div class=\\\"header-icon__side\\\">        <i class=\\\"iconfont icon-sidebar\\\"></i>    </div>    <a class=\\\"header-icon__logo\\\"  href=\\\"./#index\\\">        <img src=\\\"./static/images/header/logo.png\\\" alt=\\\"\\\">        <span>·</span>        <span>{{titleName}}</span>    </a>    <div class=\\\"header-icon__search\\\"\\\">        <i class=\\\"iconfont icon-sousuo\\\"></i>    </div></div><div class=\\\"header-nav\\\">    <nav class=\\\"header-nav__item\\\">        <a class=\\\"navLink active\\\" href=\\\"/#index\\\" id=\\\"index\\\">全部</a>        <a class=\\\"navLink\\\" href=\\\"/#tuijian\\\" id=\\\"tuijian\\\">推荐</a>        {{#each navList}}        <a class=\\\"navLink\\\" href=/#{{key}} id={{key}}>{{name}}</a>        {{/each}}    </nav>     <div class=\\\"header-nav__side hide\\\"></div></div>\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-header.html?");
 
 /***/ }),
 
@@ -214,7 +214,7 @@ eval("module.exports = \"<div class=\\\"header-icon\\\">    <div class=\\\"heade
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("module.exports = \"<div class=\\\"main-banner\\\"></div>{{#each pressList}}<a class=\\\"press bor-bot\\\">    <div class=\\\"press-flex\\\">        <div class=\\\"press-flex__info\\\">            <h3>{{title}}</h1>            <p>{{summary}}</p>        </div>        <img src={{small_image}}?imageView2/1/w/240/h/150/ alt=\\\"\\\">    </div>    <div class=\\\"press-tags\\\">        {{#if author.nickname}}        <span class=\\\"press-tags__name\\\">{{author.nickname}}</span>        {{/if}}        <span class=\\\"press-tags__item\\\">{{subject.name}}</span>        {{#if replies_count}}            <span class=\\\"press-tage__replies\\\"><span>{{replies_count}}</span>评论</span>        {{/if}}    </div></a>{{/each}}\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-main.html?");
+eval("module.exports = \"{{#if banner}}<div class=\\\"main-banner\\\"></div>{{/if}}{{#each pressList}}<a class=\\\"press bor-bot\\\">    <div class=\\\"press-flex\\\">        <div class=\\\"press-flex__info\\\">            <h3>{{title}}</h1>            <p>{{summary}}</p>        </div>        <img src={{small_image}}?imageView2/1/w/240/h/150/ alt=\\\"\\\">    </div>    <div class=\\\"press-tags\\\">        {{#if author.nickname}}        <span class=\\\"press-tags__name\\\">{{author.nickname}}</span>        {{/if}}        <span class=\\\"press-tags__item\\\">{{subject.name}}</span>        {{#if replies_count}}            <span class=\\\"press-tage__replies\\\"><span>{{replies_count}}</span>评论</span>        {{/if}}    </div></a>{{/each}}\"\n\n//# sourceURL=webpack:///./src/javascripts/views/app-main.html?");
 
 /***/ })
 

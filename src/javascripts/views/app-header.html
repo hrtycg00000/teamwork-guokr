@@ -13,10 +13,10 @@
 </div>
 <div class="header-nav">
     <nav class="header-nav__item">
-        <a class="navLink active">全部</a>
-        <a class="navLink">推荐</a>
+        <a class="navLink active" href="/#index" id="index">全部</a>
+        <a class="navLink" href="/#tuijian" id="tuijian">推荐</a>
         {{#each navList}}
-        <a class="navLink">{{name}}</a>
+        <a class="navLink" href=/#{{key}} id={{key}}>{{name}}</a>
         {{/each}}
     </nav> 
     <div class="header-nav__side hide"></div>

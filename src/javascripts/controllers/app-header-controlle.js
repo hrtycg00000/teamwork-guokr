@@ -1,4 +1,5 @@
 const { getHeaderNav, getTitleName } = require(`../models/app-header-model`);
+const routes = require(`../router/index`);
 
 const render = async () => {
     let appHeaderView = require(`../views/app-header.html`);
@@ -6,7 +7,7 @@ const render = async () => {
     let titleName = getTitleName();
     let template = Handlebars.compile(appHeaderView);
     console.log(navList);
-    
+    new routes().addRoutes(navList);
     $(`#app-header`).append(template({navList,titleName}));
 }
 

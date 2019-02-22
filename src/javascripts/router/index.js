@@ -1,4 +1,7 @@
 let routes = require(`./routes`);
+const appMainController = require(`../controllers/app-main-controlle`);
+const { Num } = require(`../models/app-model`);
+
 class Router{
     constructor(initial){
         this.initial = initial;
@@ -28,13 +31,16 @@ class RouterInstance {
         } 
     }
     listenHashChenge(){
+        new Num().init();
         this.chengHash();
-        window.addEventListener(`hashchange`,e => {            
+        window.addEventListener(`hashchange`,e => {
             this.chengHash();
         })
     } 
-    addRoutes(routeObj){
-        Object.assign(routes,routeObj);
+    addRoutes(navList){
+        navList.forEach(element => {
+            routes[element.key] = () => appMainController.nextRender(`/science_api/articles?limit=10&page=${new Num().num}&category_id=${element.id}&retrieve_type=by_category`);
+        });
     }
 }
 
