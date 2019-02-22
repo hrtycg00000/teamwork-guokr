@@ -215,6 +215,14 @@ h1, h2, h3, h4, h5, h6, p {
 .col-center {
   align-items: center; }
 
+.center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto; }
+
 .bor-bot, .bor-top, .bor-left {
   position: relative; }
 
@@ -247,6 +255,60 @@ h1, h2, h3, h4, h5, h6, p {
   top: 0;
   transform: scaleX(0.5);
   transform-origin: left center; }
+
+@keyframes loading-rectangle {
+  0% {
+    transform: rotate(0deg); }
+  50% {
+    transform: rotate(90deg);
+    opacity: .5; }
+  100% {
+    transform: rotate(0deg); } }
+
+.loading-rectangle {
+  height: 25px;
+  width: 70px; }
+
+.loading-rectangle-mod {
+  width: 6px;
+  height: 25px;
+  background: #757575;
+  float: left;
+  margin: 2px;
+  animation: loading-rectangle 1.75s infinite; }
+
+.loading-rectangle-mod:nth-of-type(1) {
+  animation-delay: .125s; }
+
+.loading-rectangle-mod:nth-of-type(2) {
+  animation-delay: .25s; }
+
+.loading-rectangle-mod:nth-of-type(3) {
+  animation-delay: .375s; }
+
+.loading-rectangle-mod:nth-of-type(4) {
+  animation-delay: .5s; }
+
+.loading-rectangle-mod:nth-of-type(5) {
+  animation-delay: .625s; }
+
+.loading-rectangle-mod:nth-of-type(6) {
+  animation-delay: .75s; }
+
+.loading-rectangle-mod:nth-of-type(7) {
+  animation-delay: .875s; }
+
+#loading {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  top: 100.5px;
+  height: auto;
+  width: 100%; }
+  #loading .loading-side {
+    width: 100%;
+    height: 100%;
+    background: #fff; }
 
 #app {
   display: flex;
@@ -391,3 +453,44 @@ h1, h2, h3, h4, h5, h6, p {
           margin-right: 5px; }
   #app-main .press::after {
     background: #eee; }
+
+/* --------------------------------------------------------------------------------- */
+@keyframes scaleX {
+  0% {
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+    -moz-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    -o-transform: scaleX(1); }
+  50% {
+    transform: scaleX(0.1);
+    -webkit-transform: scaleX(0.1);
+    -moz-transform: scaleX(0.1);
+    -ms-transform: scaleX(0.1);
+    -o-transform: scaleX(0.1); }
+  100% {
+    transform: scaleX(1);
+    -webkit-transform: scaleX(1);
+    -moz-transform: scaleX(1);
+    -ms-transform: scaleX(1);
+    -o-transform: scaleX(1); } }
+
+#finish {
+  padding: 30px 0 50px 0;
+  width: 10rem;
+  height: .8rem;
+  font-size: .32rem;
+  text-align: center;
+  line-height: 30px;
+  background: white;
+  color: #999;
+  margin: auto;
+  position: relative; }
+  #finish #finish-border {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 10rem;
+    background: #8fc31f;
+    animation: scaleX .7s .1s infinite linear;
+    -webkit-animation: scaleX .7s .1s infinite linear; }

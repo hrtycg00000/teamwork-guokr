@@ -12,10 +12,13 @@ class Num{
 class NumInstance{
     constructor(){
         this.init();
-        return this.num ++;
+        return this.num ;
     }
     init(){
-        return this.num = 1;
+        return this.num = 0;
+    }
+    add(){
+        return ++this.num ;
     }
 }
 

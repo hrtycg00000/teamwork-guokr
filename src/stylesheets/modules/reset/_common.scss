@@ -5,6 +5,7 @@
 .flex-between{display: flex;justify-content: space-between}
 .flex-col-between{display: flex;justify-content: space-between;flex-direction: column}
 .col-center{align-items: center;}
+.center{position: absolute;top: 0;left: 0;right: 0;bottom: 0;margin: auto;}
 
 // 上下左边框,颜色自己设置
 .bor-bot,.bor-top,.bor-left{position: relative;}

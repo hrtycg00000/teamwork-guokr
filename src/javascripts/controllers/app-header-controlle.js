@@ -9,6 +9,6 @@ const render = async () => {
     console.log(navList);
     new routes().addRoutes(navList);
     $(`#app-header`).append(template({navList,titleName}));
-}
+} 
 
 module.exports = { render };
