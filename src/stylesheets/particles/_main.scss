@@ -93,6 +93,7 @@
         background: #fff;
         margin: 0 auto;
         display: block;
+        position: relative;
 
         .press-flex{
             display: flex;
@@ -102,20 +103,20 @@
             .press-flex__info{
                 flex-grow: 1;flex-shrink: 1;
                 h3{
-                    font-size: 17px; font-weight: bolder;
+                    font-size: .453333rem; font-weight: bolder;
                     -webkit-line-clamp:2;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
                 }
-                p{
+                p{ 
                     -webkit-line-clamp:2;
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     display: -webkit-box;
-                    margin-top: .2rem;color: #999;font-size: 14px;
+                    margin-top: .2rem;color: #999;font-size: .373333rem;
                 }
             }
             img{
@@ -126,18 +127,35 @@
         }
 
         .press-tags{
-            height: .933333rem;
-            display: flex;
-            align-items: center;
-
+            position: absolute;
+            width: 8.933333rem;
+            bottom: .533333rem;
+            >*{
+                float: left;
+                bottom: 0;
+            }
+            .press-tags__name{
+                line-height: .533333rem;
+                margin-right: 5px;
+                font-size: 14px;
+                color: #3f3f3f;
+                font-weight: 700;
+            }
             .press-tags__item{
-                display: block;
+                display: inline-block;
                 padding: .026667rem .106667rem;
                 border: .026667rem solid #eee;
                 border-radius:.053333rem;
                 font-size: .32rem;
                 color: #adadad;
                 margin-left:4px;
+            }
+            .press-tage__replies{
+                float: right;
+                font-size: .373333rem;color: #999;
+                span{
+                    color: #3f3f3f;font-weight: 700;margin-right: 5px;
+                }
             }
         }
     }

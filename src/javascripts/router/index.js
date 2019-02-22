@@ -1,6 +1,17 @@
 let routes = require(`./routes`);
 class Router{
     constructor(initial){
+        this.initial = initial;
+        return Router.RouterInstance || this.creatRouter();
+    }
+    creatRouter(){
+        Router.RouterInstance = new RouterInstance(this.initial);
+        return Router.RouterInstance;
+    }
+}
+
+class RouterInstance {
+    constructor(initial){
         this.routes = routes;
         this.initial = initial;
     }
@@ -22,6 +33,9 @@ class Router{
             this.chengHash();
         })
     } 
+    addRoutes(routeObj){
+        Object.assign(routes,routeObj);
+    }
 }
 
 module.exports = Router;
