@@ -39,7 +39,7 @@ class RouterInstance {
     } 
     addRoutes(navList){
         navList.forEach(element => {
-            routes[element.key] = () => appMainController.nextRender(`/science_api/articles?limit=10&page=${new Num().num}&category_id=${element.id}&retrieve_type=by_category`);
+            routes[element.key] = () => appMainController.render(`/science_api/articles?limit=10&page=${new Num().init()}&category_id=${element.id}&retrieve_type=by_category`);
         });
     }
 }

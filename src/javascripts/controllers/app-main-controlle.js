@@ -2,8 +2,9 @@ const { getFilmsList, getPressList, getBanner } = require(`../models/app-main-mo
 const { Num } = require(`../models/app-model`);
 const omain=$(`#app-main`);
 let PressRenderBool = false;
+let allPress = [];
 
-const render = () => {
+/* const render = () => {
     changeNav();
     let appMainView = require(`../views/app-main.html`);
     let pressList = getPressList();
@@ -12,31 +13,56 @@ const render = () => {
     omain.html( template({ pressList, banner: getBanner() }) );
     init();//渲染完开始监听
     
-}
+} */
 
-const nextRender = async (url) => {
+const render = async (url) => {
     $(`#loading`).removeClass(`hide`);
     changeNav();
+
     let appMainView = require(`../views/app-main.html`);
-    let flimList = await getFilmsList(url);
+    let pressList = await getFilmsList(url);
     let template = Handlebars.compile( appMainView );
-    console.log(flimList);
-    omain.html( template({ pressList: flimList}) );
-    $(`#loading`).addClass(`hide`);
+    console.log(pressList);
+    omain.html( template({ pressList , }) );
+    
+
     init();//渲染完开始监听
+    allPress=allPress.concat(pressList);
+    
+    $(`#loading`).addClass(`hide`);
 }
 
-const addPressRender = async (url) => {
+const addPressRender = async () => {
     if ( PressRenderBool ) return;
-    PressRenderBool =false;
+    PressRenderBool =true;
+    $(`#finish-border`).removeClass(`hide`);
 
     let appMainView = require(`../views/app-press.html`);
-    let flimList = await getFilmsList(url);
-    let template = Handlebars.compile( appMainView );
-    console.log(flimList);
-    omain.html( template({ pressList: flimList}) );
-    $(`#loading`).addClass(`hide`);
+    let url = getUrl();
+    
+    let pressList = await getFilmsList(url);
+    if ( pressList.length < 10 ){
+        removeLoadHandler();
+    }
 
+    let template = Handlebars.compile( appMainView );
+    $(`#finish`).before( template({ pressList }) );
+
+    allPress=allPress.concat(pressList);
+    console.log(allPress);
+    $(`#finish-border`).addClass(`hide`);
+    PressRenderBool = false;
+}
+
+function getUrl(){
+    let url;
+    let atNav =$('.header-nav__item>.active');    
+    if ( atNav.attr(`id`) === `index` || atNav.attr(`id`) === `tuijian`){
+        url = `/science_api/articles?limit=10&page=${new Num().add()}`;
+    }else {
+        url = `/science_api/articles?limit=10&page=${new Num().add()}&category_id=${atNav.attr(`nav-id`)}&retrieve_type=by_category`;
+    }
+    return url;
 }
 
 function changeNav(){
@@ -48,6 +74,7 @@ function changeNav(){
 
 
 function init(){
+    allPress=[];
     listenerScroll();
 }
 
@@ -57,18 +84,21 @@ function listenerScroll(){
         if ( scrollBool ){
             scrollBool = false;
             if ( $("#finish").offset().top < document.documentElement.clientHeight + 50 ){
-                console.log(new Num());
-                
+                addPressRender();
             }
             setTimeout(() => {
                 scrollBool = true;
                 if ( $("#finish").offset().top < document.documentElement.clientHeight + 50 ){
-                    console.log(new Num());
+                    addPressRender();
                 }
-            },30)
+            },100)
         }
     })
 }
 
+function removeLoadHandler(){
+    $(`#finish`).html(`我是有底线的!`)
+    $('#app-main').off('scroll');
+}
 
-module.exports = { render, nextRender };
+module.exports = { render, allPress };

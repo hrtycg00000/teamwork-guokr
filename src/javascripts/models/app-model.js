@@ -5,17 +5,24 @@ const getMetaContent = () => {
 
 class Num{
     constructor(){
-        return Num.instance ||  new NumInstance();
+        return Num.instance || this.init();
+    }
+    init(){
+        if( !Num.instance ){
+            Num.instance = new NumInstance();
+        }
     }
 }
 
 class NumInstance{
     constructor(){
-        this.init();
-        return this.num ;
+        if ( !this.num ) {
+            this.init();
+        }
+        return this.num;
     }
     init(){
-        return this.num = 0;
+        return this.num = 1;
     }
     add(){
         return ++this.num ;
