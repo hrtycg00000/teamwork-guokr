@@ -17,7 +17,12 @@ const getPressList = () => {
     return getMetaContent().firstScreen;
 }
 const getBanner = () => {
-    return getMetaContent().flowingBoard.flowingBanner;
+    let bannerList = getMetaContent().flowingBoard.flowingBanner
+    bannerList.forEach(element => {
+        if( !element.url ) return;
+        element.id = element.url.split("article")[1].split("/")[1];
+    });
+    return bannerList;
 }
 
 

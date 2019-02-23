@@ -9,7 +9,9 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "swiper": "^4.4.6"
+  },
   "devDependencies": {
     "del": "^3.0.0",
     "global": "^4.3.2",

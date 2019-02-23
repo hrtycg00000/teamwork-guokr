@@ -1,5 +1,6 @@
 const { getFilmsList, getPressList, getBanner } = require(`../models/app-main-model`);
 const { Num, Allpress } = require(`../models/app-model`);
+const Swiper = require(`swiper`).default;
 const omain=$(`#app-main`);
 let PressRenderBool = false;
 let allPress = [];
@@ -19,12 +20,19 @@ let allPress = [];
 const render = async (url) => {
     $(`#loading`).removeClass(`hide`);
     changeNav();
+    let bannerList = getBanner();
 
     let appMainView = require(`../views/app-main.html`);
+    if($(`.header-nav__item .active`).attr(`id`) === `index`){//如果是index页就将banner模块插入
+        let appMainBannerView = require(`../views/app-main__banner.html`);
+        appMainView = appMainBannerView + appMainView;
+    }
+    console.log(bannerList);
+    
+    let template = Handlebars.compile( appMainView, bannerList );
     let pressList = await getFilmsList(url);
-    let template = Handlebars.compile( appMainView );
-    // console.log(pressList);
-    omain.html( template({ pressList , }) );
+    omain.html( template({ pressList , bannerList}) );
+    
     
 
     init();//渲染完开始监听
@@ -54,11 +62,9 @@ const addPressRender = async () => {
     PressRenderBool = false;
 }
 
-//渲染轮播图
 const bannerRender = () => {
-    console.log(getBanner());
     let appMainBannerView = require(`../views/app-main__banner.html`);
-    
+
 }
 
 
@@ -72,6 +78,23 @@ function init(){
     //侦听滚轮位置
     //  作用:滚轮位置到最下面时加载更多新闻
     listenerScroll();
+
+    //如果有轮播图则初始化
+    if( $(`.main-banner`)[0] ){
+        var mySwiper = new Swiper ('.main-banner', {
+            loop: true, // 循环模式选项
+            // 如果需要分页器 
+            pagination: {
+              el: '.swiper-pagination',
+              on: {
+                resize: function(){
+                  this.params.width = window.innerWidth;
+                  this.update();
+                },
+             } ,
+            }
+        })   
+    }
 }
 
 //新闻列表点击事件
@@ -130,4 +153,4 @@ function removeLoadHandler(){
     $('#app-main').off('scroll');
 }
 
-module.exports = { render, bannerRender };
+module.exports = { render };

@@ -1,3 +1,11 @@
-<div class="main-banner hide">
-
+<div class="main-banner swiper-container">
+    <div class="swiper-wrapper">
+        {{#each bannerList}}
+            {{#if id}}
+                <a href="./article.html?id={{id}}" class="swiper-slide"><img src="{{image}}" alt=""></a>
+            {{/if}}
+        {{/each}}
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
 </div>

@@ -304,7 +304,8 @@ h1, h2, h3, h4, h5, h6, p {
   left: 0;
   top: 100.5px;
   height: auto;
-  width: 100%; }
+  width: 100%;
+  z-index: 99; }
   #loading .loading-side {
     width: 100%;
     height: 100%;
@@ -376,13 +377,26 @@ h1, h2, h3, h4, h5, h6, p {
 #app-main {
   flex-grow: 1;
   flex-shrink: 1;
-  overflow: auto;
-  background: goldenrod; }
+  overflow: auto; }
   #app-main .main-banner {
     width: 10rem;
     height: 5.36rem;
-    background: #eee;
     margin: 0 auto; }
+    #app-main .main-banner .swiper-wrapper .swiper-slide img {
+      width: 10rem;
+      height: 4.666667rem; }
+    #app-main .main-banner .swiper-pagination-bullets {
+      height: 2px;
+      bottom: 0;
+      margin-top: .373333rem;
+      margin-bottom: .266667rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #app-main .main-banner .swiper-pagination-bullets .swiper-pagination-bullet {
+        width: 13px;
+        border-radius: 0;
+        height: 2px; }
   #app-main .press {
     padding: 20px;
     width: 10rem;

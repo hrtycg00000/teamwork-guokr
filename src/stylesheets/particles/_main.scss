@@ -81,11 +81,32 @@
     flex-grow: 1;
     flex-shrink: 1;
     overflow: auto;
-    background: goldenrod;
     .main-banner{
         width: 10rem;height: 5.36rem;
-        background: #eee;
         margin: 0 auto;
+        .swiper-wrapper{
+
+            .swiper-slide{
+                img{
+                    width: 10rem;height: 4.666667rem;
+                }
+            }
+        }
+        .swiper-pagination-bullets{
+            height: 2px;
+            bottom: 0;
+            margin-top: .373333rem;
+            margin-bottom: .266667rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .swiper-pagination-bullet{
+                width: 13px;
+                border-radius: 0;
+                height: 2px;
+            }
+        }
+        
     }
     .press{
         padding: 20px;
