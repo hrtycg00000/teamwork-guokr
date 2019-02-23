@@ -15,6 +15,7 @@ let allPress = [];
     
 } */
 
+//渲染新闻
 const render = async (url) => {
     $(`#loading`).removeClass(`hide`);
     changeNav();
@@ -22,37 +23,44 @@ const render = async (url) => {
     let appMainView = require(`../views/app-main.html`);
     let pressList = await getFilmsList(url);
     let template = Handlebars.compile( appMainView );
-    console.log(pressList);
+    // console.log(pressList);
     omain.html( template({ pressList , }) );
     
 
     init();//渲染完开始监听
     new Allpress().addPress(pressList);
-    console.log(new Allpress().getPressList());
+    // console.log(new Allpress().getPressList());
     $(`#loading`).addClass(`hide`);
 }
 
+//渲染更多新闻
 const addPressRender = async () => {
-    if ( PressRenderBool ) return;
+    if ( PressRenderBool ) return;//如果已经开始加载则跳出,防止重复执行
     PressRenderBool =true;
-    $(`#finish-border`).removeClass(`hide`);
-
-    let appMainView = require(`../views/app-press.html`);
-    let url = getUrl();
+    $(`#finish-border`).removeClass(`hide`);//显示加载动画
     
+    let url = getUrl();
     let pressList = await getFilmsList(url);
-    if ( pressList.length < 10 ){
+    let appMainView = require(`../views/app-press.html`);
+    let template = Handlebars.compile( appMainView );
+    
+    if ( pressList.length < 10 ){//如果加载来的新闻小于10说明没有更多新闻
         removeLoadHandler();
     }
-
-    let template = Handlebars.compile( appMainView );
-    $(`#finish`).before( template({ pressList }) );
-
-    new Allpress().addPress(pressList);
-    console.log(new Allpress().getPressList());
-    $(`#finish-border`).addClass(`hide`);
+    $(`#finish`).before( template({ pressList }) );//将内容插入到#finish前面
+    new Allpress().addPress(pressList);//将新闻列表加入到Allpress类中
+    // console.log(new Allpress().getPressList());
+    $(`#finish-border`).addClass(`hide`);//关闭加载动画
     PressRenderBool = false;
 }
+
+//渲染轮播图
+const bannerRender = () => {
+    console.log(getBanner());
+    let appMainView = require(`../views/app-main__banner`);
+    
+}
+
 
 //重置一些值并且添加事件
 //  切换页面或第一次渲染后(addPressRender)执行
@@ -113,10 +121,10 @@ function listenerScroll(){
     })
 }
 
-//
+//更改底部html并且取消侦听scroll事件
 function removeLoadHandler(){
     $(`#finish`).html(`我是有底线的!`)
     $('#app-main').off('scroll');
 }
 
-module.exports = { render };
+module.exports = { render, bannerRender };
