@@ -256,15 +256,28 @@ h1, h2, h3, h4, h5, h6, p {
   transform: scaleX(0.5);
   transform-origin: left center; }
 
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  -webkit-tap-highlight-color: transparent; }
+
+body, html {
+  font-size: 14px;
+  color: #3f3f3f;
+  font-family: "微软雅黑";
+  word-wrap: break-word; }
+
 #app {
-  display: flex;
-  flex-direction: column;
   height: 100%; }
 
 #app-header {
   height: 50px;
-  flex-grow: 0;
-  flex-shrink: 0; }
+  width: 100%;
+  position: fixed;
+  background-color: #fff;
+  top: 0;
+  left: 0; }
   #app-header .header-icon {
     height: 50px;
     display: flex;
@@ -289,6 +302,123 @@ h1, h2, h3, h4, h5, h6, p {
       background-image: url(../../static/images/header/logo-ed25de9c93.png); }
 
 /* 文章内容 */
+.flex {
+  display: flex; }
+
+.tag {
+  height: 27px;
+  line-height: 27px;
+  color: #999;
+  background: #f6f6f6;
+  display: inline-block;
+  margin: 0 10px 20px 0;
+  padding: 0 10px;
+  font-size: 12px;
+  border: 1px solid transparent;
+  border-radius: 3px; }
+
+.avatar {
+  border-radius: 50%;
+  overflow: hidden; }
+  .avatar img {
+    width: 100%;
+    height: 100%; }
+
 #app-main {
-  flex-grow: 1;
+  margin-top: 50px;
+  padding: 16px 20px;
   overflow: auto; }
+  #app-main h1 {
+    font-size: 21px; }
+  #app-main .info {
+    margin: 10px auto 20px;
+    font-size: 12px;
+    align-items: flex-end;
+    justify-content: space-between; }
+    #app-main .info .info-right {
+      color: #999; }
+  #app-main .discription {
+    border-left: 3px solid #8fc31f;
+    font-size: 17px;
+    color: #999;
+    padding-left: 10px;
+    line-height: 1.9; }
+  #app-main .context {
+    line-height: 1.9;
+    font-size: 17px; }
+    #app-main .context blockquote, #app-main .context h2, #app-main .context h3, #app-main .context hr, #app-main .context iframe, #app-main .context img, #app-main .context li, #app-main .context p {
+      margin-top: 15px; }
+    #app-main .context h2, #app-main .context h3, #app-main .context p {
+      font-size: 17px; }
+    #app-main .context img {
+      display: block;
+      max-width: 100% !important;
+      height: auto !important;
+      margin: 0 auto 5px; }
+    #app-main .context .img-caption, #app-main .context .reference-item {
+      font-size: 12px;
+      color: #999; }
+  #app-main .tags {
+    margin: 20px 0 40px; }
+    #app-main .tags .tags-title {
+      font-size: 12px;
+      word-break: keep-all;
+      line-height: 27px;
+      padding-right: 12px;
+      color: #999; }
+    #app-main .tags .tags-list {
+      width: calc(100% - 40px); }
+      #app-main .tags .tags-list .tag {
+        color: #8fc31f;
+        margin-bottom: 5px;
+        margin-right: 5px; }
+  #app-main .author {
+    font-size: 12px;
+    background: #f6f6f6;
+    padding: 20px;
+    align-items: center;
+    color: #3f3f3f;
+    word-break: break-all; }
+    #app-main .author .author-intro {
+      color: #999; }
+    #app-main .author .author-right {
+      flex: auto;
+      float: right;
+      text-align: right;
+      letter-spacing: .5px; }
+      #app-main .author .author-right .avatar {
+        flex: auto;
+        float: right;
+        width: 38px;
+        height: 38px;
+        margin-left: 10px; }
+
+.recommend {
+  height: 236px;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #f6f6f6;
+  overflow: hidden; }
+  .recommend img {
+    display: block;
+    width: 100% !important;
+    height: auto !important; }
+  .recommend p {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 17px;
+    color: #fff;
+    z-index: 3;
+    width: 60%; }
+
+.recommend::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; }

@@ -68,9 +68,11 @@ function init(){
 //新闻列表点击事件
 //  根据点击的id找到对应的信息并放入localStorage中
 function pressClickHandler(e){
+
     let pressDetail =new Allpress().getPressDetail($(this).attr(`path-id`));
     localStorage.pressDetail=JSON.stringify(pressDetail);
-    //JSON.parse(localStorage.pressDetail) 使用
+    console.log(JSON.parse(localStorage.pressDetail));
+    
 }
 
 //根据nav栏active类名来获取Url地址

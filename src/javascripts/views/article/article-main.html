@@ -1,18 +1,36 @@
-{{#context}}
+{{#article}}
 <h1>{{title}}</h1>
-<div class="flex-info">
+<div class="flex info">
   <div class="info-left">{{author.nickname}}</div>
-  <div class="info-right">{{date_created}}</div>
+  <div class="info-right">{{formatDate date_created}}</div>
 </div>
 <p class="discription">{{summary}}</p>
 <div class="context">
 </div>
 <div class="flex tags">
-  <div class="tags-title">本文属于</div>
+  <div class="tags-title">本文属于：</div>
   <div class="tags-list">
-    {{#if channels}}
-    <a href="" class="tag">{{channels.name}}</a>
+
+    {{#with channels}}
+      {{#each this}}
+    <a href="" class="tag">{{name}}</a>
+      {{/each}}
+    {{/with}}
+    {{#if subject.name}}
+    <a href="" class="tag">{{subject.name}}</a>
     {{/if}}
   </div>
 </div>
-{{/context}}
+<div class="flex author">
+  <div class="author-left">
+    <p class="author-name">{{author.nickname}}</p>
+    <p class="author-intro">{{author.introduction}}</p>
+  </div>
+  <div class="author-right">
+    <div class="avatar">
+      <img src="{{#toHTTPS}}{{author.avatar.large}}{{/toHTTPS}}{{addTail author.avatar.large}}" alt="">
+    </div>
+  </div>
+</div>
+{{/article}}
+
