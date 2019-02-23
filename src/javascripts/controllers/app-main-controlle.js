@@ -57,7 +57,7 @@ const addPressRender = async () => {
 //渲染轮播图
 const bannerRender = () => {
     console.log(getBanner());
-    let appMainView = require(`../views/app-main__banner`);
+    let appMainView = require(`../views/app-main_banner`);
     
 }
 

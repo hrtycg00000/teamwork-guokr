@@ -1,0 +1,424 @@
+@charset "UTF-8";
+/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block; }
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline; }
+
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+[hidden],
+template {
+  display: none; }
+
+a {
+  background-color: transparent; }
+
+a:active,
+a:hover {
+  outline: 0; }
+
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+b,
+strong {
+  font-weight: bold; }
+
+dfn {
+  font-style: italic; }
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+mark {
+  background: #ff0;
+  color: #000; }
+
+small {
+  font-size: 80%; }
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+img {
+  border: 0; }
+
+svg:not(:root) {
+  overflow: hidden; }
+
+figure {
+  margin: 1em 40px; }
+
+hr {
+  box-sizing: content-box;
+  height: 0; }
+
+pre {
+  overflow: auto; }
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em; }
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0; }
+
+button {
+  overflow: visible; }
+
+button,
+select {
+  text-transform: none; }
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer; }
+
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+input {
+  line-height: normal; }
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0; }
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+input[type="search"] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box; }
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+legend {
+  border: 0;
+  padding: 0; }
+
+textarea {
+  overflow: auto; }
+
+optgroup {
+  font-weight: bold; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+td,
+th {
+  padding: 0; }
+
+* {
+  box-sizing: border-box;
+  font-family: '微软雅黑'; }
+
+html, body {
+  height: 100%; }
+
+a {
+  color: #333;
+  text-decoration: none; }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0; }
+
+.show {
+  display: block !important; }
+
+.hide {
+  display: none !important; }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.flex-between {
+  display: flex;
+  justify-content: space-between; }
+
+.flex-col-between {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column; }
+
+.col-center {
+  align-items: center; }
+
+.center {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto; }
+
+.bor-bot, .bor-top, .bor-left {
+  position: relative; }
+
+.bor-bot::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleY(0.5);
+  transform-origin: bottom center; }
+
+.bor-top::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleY(0.5);
+  transform-origin: top center; }
+
+.bor-left::after {
+  content: "";
+  width: 1px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: scaleX(0.5);
+  transform-origin: left center; }
+
+* {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  -webkit-tap-highlight-color: transparent; }
+
+body, html {
+  font-size: 14px;
+  color: #3f3f3f;
+  font-family: "微软雅黑";
+  word-wrap: break-word; }
+
+#app {
+  height: 100%; }
+
+#app-header {
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  background-color: #fff;
+  top: 0;
+  left: 0; }
+  #app-header .header-icon {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    #app-header .header-icon i {
+      font-size: 23px; }
+    #app-header .header-icon img {
+      width: 33px; }
+    #app-header .header-icon .header-icon__side, #app-header .header-icon .header-icon__search {
+      height: 100%;
+      padding: 0 15px;
+      display: flex;
+      align-items: center; }
+    #app-header .header-icon .header-icon__logo {
+      background-size: 100% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 50px;
+      float: right;
+      width: 19%;
+      background-image: url(../../static/images/header/logo-ed25de9c93.png); }
+
+/* 文章内容 */
+.flex {
+  display: flex; }
+
+.tag {
+  height: 27px;
+  line-height: 27px;
+  color: #999;
+  background: #f6f6f6;
+  display: inline-block;
+  margin: 0 10px 20px 0;
+  padding: 0 10px;
+  font-size: 12px;
+  border: 1px solid transparent;
+  border-radius: 3px; }
+
+.avatar {
+  border-radius: 50%;
+  overflow: hidden; }
+  .avatar img {
+    width: 100%;
+    height: 100%; }
+
+#app-main {
+  margin-top: 50px;
+  padding: 16px 20px;
+  overflow: auto; }
+  #app-main h1 {
+    font-size: 21px; }
+  #app-main .info {
+    margin: 10px auto 20px;
+    font-size: 12px;
+    align-items: flex-end;
+    justify-content: space-between; }
+    #app-main .info .info-right {
+      color: #999; }
+  #app-main .discription {
+    border-left: 3px solid #8fc31f;
+    font-size: 17px;
+    color: #999;
+    padding-left: 10px;
+    line-height: 1.9; }
+  #app-main .context {
+    line-height: 1.9;
+    font-size: 17px; }
+    #app-main .context blockquote, #app-main .context h2, #app-main .context h3, #app-main .context hr, #app-main .context iframe, #app-main .context img, #app-main .context li, #app-main .context p {
+      margin-top: 15px; }
+    #app-main .context h2, #app-main .context h3, #app-main .context p {
+      font-size: 17px; }
+    #app-main .context img {
+      display: block;
+      max-width: 100% !important;
+      height: auto !important;
+      margin: 0 auto 5px; }
+    #app-main .context .img-caption, #app-main .context .reference-item {
+      font-size: 12px;
+      color: #999; }
+  #app-main .tags {
+    margin: 20px 0 40px; }
+    #app-main .tags .tags-title {
+      font-size: 12px;
+      word-break: keep-all;
+      line-height: 27px;
+      padding-right: 12px;
+      color: #999; }
+    #app-main .tags .tags-list {
+      width: calc(100% - 40px); }
+      #app-main .tags .tags-list .tag {
+        color: #8fc31f;
+        margin-bottom: 5px;
+        margin-right: 5px; }
+  #app-main .author {
+    font-size: 12px;
+    background: #f6f6f6;
+    padding: 20px;
+    align-items: center;
+    color: #3f3f3f;
+    word-break: break-all; }
+    #app-main .author .author-intro {
+      color: #999; }
+    #app-main .author .author-right {
+      flex: auto;
+      float: right;
+      text-align: right;
+      letter-spacing: .5px; }
+      #app-main .author .author-right .avatar {
+        flex: auto;
+        float: right;
+        width: 38px;
+        height: 38px;
+        margin-left: 10px; }
+
+.recommend {
+  height: 236px;
+  width: 100%;
+  position: relative;
+  border-bottom: 1px solid #f6f6f6;
+  overflow: hidden; }
+  .recommend img {
+    display: block;
+    width: 100% !important;
+    height: auto !important; }
+  .recommend p {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 17px;
+    color: #fff;
+    z-index: 3;
+    width: 60%; }
+
+.recommend::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; }
