@@ -1,5 +1,5 @@
 const { getFilmsList, getPressList, getBanner } = require(`../models/app-main-model`);
-const { Num } = require(`../models/app-model`);
+const { Num, Allpress } = require(`../models/app-model`);
 const omain=$(`#app-main`);
 let PressRenderBool = false;
 let allPress = [];
@@ -27,9 +27,8 @@ const render = async (url) => {
     
 
     init();//渲染完开始监听
-    allPress=allPress.concat(pressList);
-    console.log(allPress);
-    
+    new Allpress().addPress(pressList);
+    console.log(new Allpress().getPressList());
     $(`#loading`).addClass(`hide`);
 }
 
@@ -49,12 +48,32 @@ const addPressRender = async () => {
     let template = Handlebars.compile( appMainView );
     $(`#finish`).before( template({ pressList }) );
 
-    allPress=allPress.concat(pressList);
-    console.log(allPress);
+    new Allpress().addPress(pressList);
+    console.log(new Allpress().getPressList());
     $(`#finish-border`).addClass(`hide`);
     PressRenderBool = false;
 }
 
+//重置一些值并且添加事件
+//  切换页面或第一次渲染后(addPressRender)执行
+function init(){
+    //清空
+    new Allpress().resetPress();
+    //将滚轮位置设置为0,并委托点击事件
+    $('#app-main').scrollTop(0).on(`click`, `.press`, pressClickHandler);
+    //侦听滚轮位置
+    //  作用:滚轮位置到最下面时加载更多新闻
+    listenerScroll();
+}
+//新闻列表点击事件
+//  根据点击的id找到对应的信息并放入localStorage中
+function pressClickHandler(e){
+    let pressDetail =new Allpress().getPressDetail($(this).attr(`path-id`));
+    localStorage.pressDetail=JSON.stringify(pressDetail);
+    //JSON.parse(localStorage.pressDetail) 使用
+}
+
+//根据nav栏active类名来获取Url地址
 function getUrl(){
     let url;
     let atNav =$('.header-nav__item>.active');    
@@ -66,6 +85,8 @@ function getUrl(){
     return url;
 }
 
+//根据hash值改变nav栏按钮颜色
+//  切换页面或第一次渲染(addPressRender)后执行
 function changeNav(){
     let path = location.hash.replace("#", "");
     $(`.navLink`).removeClass("active");
@@ -73,13 +94,7 @@ function changeNav(){
     $('.header-icon__logo span').eq(1).html($('.header-nav__item .active').html());
 } 
 
-
-function init(){
-    allPress=[];
-    listenerScroll();
-    console.log(allPress)
-}
-
+//给#app-main侦听滚轮事件并减少触发频率
 function listenerScroll(){
     let scrollBool = true;
     $('#app-main').on('scroll', e => {
@@ -98,9 +113,10 @@ function listenerScroll(){
     })
 }
 
+//
 function removeLoadHandler(){
     $(`#finish`).html(`我是有底线的!`)
     $('#app-main').off('scroll');
 }
 
-module.exports = { render, allPress };
+module.exports = { render };

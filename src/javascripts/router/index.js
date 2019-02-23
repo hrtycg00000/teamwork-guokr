@@ -4,11 +4,11 @@ const { Num } = require(`../models/app-model`);
 
 class Router{
     constructor(initial){
-        this.initial = initial;
+        Router.initial = initial || `index`;
         return Router.RouterInstance || this.creatRouter();
     }
     creatRouter(){
-        Router.RouterInstance = new RouterInstance(this.initial);
+        Router.RouterInstance = new RouterInstance(Router.initial);
         return Router.RouterInstance;
     }
 }
