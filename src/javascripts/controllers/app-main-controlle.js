@@ -103,7 +103,7 @@ function pressClickHandler(e){
 
     let pressDetail =new Allpress().getPressDetail($(this).attr(`path-id`));
     localStorage.pressDetail=JSON.stringify(pressDetail);
-    console.log(JSON.parse(localStorage.pressDetail));
+    // console.log(JSON.parse(localStorage.pressDetail));
     
 }
 

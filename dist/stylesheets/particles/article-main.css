@@ -12,7 +12,7 @@ body, html {
   word-wrap: break-word; }
 
 #app {
-  height: 100%; }
+  overflow: auto; }
 
 #app-header {
   height: 50px;
@@ -136,11 +136,13 @@ body, html {
         height: 38px;
         margin-left: 10px; }
 
+/* 推荐 */
 .recommend {
   height: 236px;
   width: 100%;
   position: relative;
   border-bottom: 1px solid #f6f6f6;
+  z-index: -1;
   overflow: hidden; }
   .recommend img {
     display: block;
@@ -165,3 +167,60 @@ body, html {
   top: 0;
   left: 0;
   z-index: 2; }
+
+.tip {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin: 0 auto;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  color: #999; }
+
+/* 用户留言 */
+.hide, div.hide, p.hide {
+  display: none; }
+
+#comments-box {
+  margin-top: 50px;
+  padding: 16px 20px; }
+  #comments-box .comments-title {
+    font-size: 14px;
+    color: #3f3f3f;
+    margin-top: 24px;
+    font-weight: bolder; }
+  #comments-box .comments {
+    font-size: 14px; }
+    #comments-box .comments .comments .info, #comments-box .comments .comments .quote, #comments-box .comments .comments blockquote, #comments-box .comments .comments p {
+      margin-top: 10px; }
+    #comments-box .comments .comments .quote, #comments-box .comments .comments blockquote {
+      color: #999;
+      border-left: 3px solid #d8d8d8;
+      padding-left: 10px;
+      overflow: hidden;
+      display: -webkit-box; }
+    #comments-box .comments .info {
+      margin: 10px 0;
+      color: #999;
+      font-size: 12px;
+      line-height: 20px;
+      align-items: flex-end;
+      justify-content: space-between; }
+      #comments-box .comments .info .avatar {
+        width: 20px;
+        height: 20px;
+        float: left;
+        margin-right: 10px;
+        border-radius: 50%;
+        overflow: hidden; }
+      #comments-box .comments .info .time {
+        float: right;
+        letter-spacing: .5px; }
+    #comments-box .comments li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      line-height: 1.9;
+      list-style: none; }
+  #comments-box .comments-more {
+    background: #f6f6f6; }

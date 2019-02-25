@@ -1,0 +1,22 @@
+
+<p class="tip comments-title">{{article_id}}</p>
+
+<ul class="comments">
+  {{#comments}}
+  <li>
+    <p></p>
+    {{{content}}}
+    <div class="info">
+      <div class="avatar">
+        <img src="{{author.avatar.large}}">
+      </div>
+      <span class="author-name">{{author.nickname}}</span>
+      <span class="time">{{formatDate date_created}}</span>
+    </div>
+  </li>
+  {{/comments}}
+</ul>
+<div class="finish">
+  <p class="tip comments-more">查看更多</p>
+  <p class="tip comments-finish hide">我是有底线的</p>
+</div>

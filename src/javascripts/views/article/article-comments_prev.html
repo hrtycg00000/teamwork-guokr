@@ -1,0 +1,15 @@
+<ul class="comments">
+  {{#comments}}
+  <li>
+    <p></p>
+    {{{content}}}
+    <div class="info">
+      <div class="avatar">
+        <img src="{{author.avatar.large}}">
+      </div>
+      <span class="author-name">{{author.nickname}}</span>
+      <span class="time">{{formatDate date_created}}</span>
+    </div>
+  </li>
+  {{/comments}}
+</ul>
